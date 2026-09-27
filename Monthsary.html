@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monthsary</title>
+
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Estilo ng Body */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #ffe6e9;
+      font-family: Poppins, sans-serif;
+    }
+
+    /* Container para maayos ang pagkakahanay ng mga elements */
+    .container {
+      text-align: center;
+    }
+
+    h1{
+
+       
+        color: rgb(152, 31, 31);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    /* Estilo ng Button */
+    .heart-btn {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      background-color: #ff4d6d;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      transition: transform 0.1s ease, background-color 0.2s;
+    }
+
+    .heart-btn:hover {
+      background-color: #ff2a51;
+    }
+
+    .heart-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Estilo para sa Pop-up na Puso (Tiyaking kapareho ng nasa JS) */
+    .heart-popup {
+      position: fixed;
+      font-size: 28px;
+      user-select: none;
+      pointer-events: none;
+      animation: floatUp 1s ease-out forwards;
+      z-index: 9999;
+    }
+
+    /* Animation ng Puso */
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+      }
+      50% {
+        transform: translate(-50%, -40px) scale(1.4);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -90px) scale(0.8);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Happy 5 Months Of Love</h1>
+
+    <img src="love.jpg" alt="Happy Monthsary" width="500" height="300"><br>
+
+    <button id="heartbtn" class="heart-btn">Click Here</button>
+  </div>
+
+  <script> 
+    const button = document.getElementById('heartbtn');
+
+    button.addEventListener('click', function(e) {
+      const heart = document.createElement('span');
+      
+      // INAYOS: Binago ang 'heart' papuntang 'heart-popup' para mag-match sa CSS
+      heart.classList.add('heart-popup');
+      heart.innerText = '❤️';
+
+      const rect = button.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top;
+
+      heart.style.left = `${x}px`;
+      heart.style.top = `${y}px`;
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 1000);
+    });
+  </script>
+
+</body>
+</html>
